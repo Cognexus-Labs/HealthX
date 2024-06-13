@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import useSpeechToText from 'react-hook-speech-to-text';
 import Header from '../../components/Header';
 import micIcon from './mic.svg';
@@ -10,6 +12,11 @@ import '../signin.css';
 
 const Summary: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // const createSummary = useMutation(api.patients.createPatient);
+  // const fetchSummary = useQuery(api.patients.getPatient, { _id: userId });
+  // const updateSummary = useMutation(api.patients.updatePatient);
+  // const deleteSummary = useMutation(api.patients.deletePatient);
 
   const {
     error,

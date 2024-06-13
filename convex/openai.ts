@@ -15,7 +15,7 @@ export const chat = action({
      },
      handler: async (ctx, args) => {
         const response = await openai.chat.completions.create({
-          model: "gpt-3.5-turbo",
+          model: "gpt-4o",
           messages: [
             {
               // Provide a 'system' message to give GPT context about how to respond
