@@ -6,13 +6,7 @@ const TextInput = ({ addSummary }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('https://summarizeanything.azurewebsites.net/text2summary', { 
-        headers: {
-            'Content-Type': 'application/json',
-          },
-      });
-      console.log(response);
-      console.log(response.data.summary)
+      const response = await axios.post('https://summarizeanything.azurewebsites.net/text2summary', { text: text });
       addSummary(response.data.summary);
     } catch (error) {
       console.error('Error summarizing text:', error);
