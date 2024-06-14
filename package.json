@@ -11,7 +11,7 @@
   },
   "author": {
     "name": "Idowu Festus",
-    "email": "idowufestustemiloluwa@gmail.com",
+    "email": "idowufestustemiloluwa@gmail.com"
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.30.7",
