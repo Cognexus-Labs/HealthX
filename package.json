@@ -1,18 +1,17 @@
 {
-  "name": "rapha",
+  "name": "healthx",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://rapha.netlify.app",
+  "homepage": "/",
   "scripts": {
     "dev": "vite",
-    "build": "npx convex deploy --cmd \"npm run build\"",
+    "build": "vite build",
     "start": "vite preview"
   },
   "author": {
     "name": "Idowu Festus",
     "email": "idowufestustemiloluwa@gmail.com",
-    "url": "https://rapha.netlify.app"
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.30.7",
