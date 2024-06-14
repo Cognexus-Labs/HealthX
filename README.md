@@ -1,12 +1,9 @@
-# Rapha
-Decentralized Healthcare Platform 
+# HealthX
+Healthcare Productivity Tool 
 
-Our inspiration for the Decentralized Healthcare Platform stems from the need to revolutionize the healthcare experience. The project focuses on creating a comprehensive patient portal, offering seamless access to medical records, appointment history, lab results, and prescriptions, along with features like appointment scheduling and secure messaging with healthcare providers. To ensure efficient data exchange, we use web5 protocols. A robust consent management system empowers patients to control access to their health data, allowing them to grant or revoke consent for sharing with healthcare providers or researchers.
+Our inspiration for the Healthcare Platform stems from the need to revolutionize the healthcare experience. The project focuses on creating a comprehensive patient portal, offering seamless access to medical records, appointment history, lab results, and prescriptions, along with features like appointment scheduling and secure messaging with healthcare providers. To ensure efficient data exchange, we use web5 protocols. A robust consent management system empowers patients to control access to their health data, allowing them to grant or revoke consent for sharing with healthcare providers or researchers.
 
 ## Demo Video
-https://github.com/Mcnoble1/Rapha/assets/40045755/eacbe375-6739-4f99-9431-37b474e0491f
-
-
 
 ## What it does
 Rapha uses Decentralized Identifiers (DIDs) to enable users, including patients, doctors, and healthcare providers, to create and manage their unique digital identities. Each user possesses a personal Decentralized Web Node (DWN) as a secure data store, ensuring control over health records and selective data sharing with trusted parties. 
@@ -19,12 +16,8 @@ Rapha uses Decentralized Identifiers (DIDs) to enable users, including patients,
 
 ## How we built it
 - ReactJS for the User Interface
-- Web5.js SDK for the backend 
-- Decentralized Identifiers for unique user identity and authentication
-- Decentralized Web Nodes for secure data storage, 
-- Web5 Protocols for permissioned data and information sharing and access, 
-- Verifiable Credentials and Presentation Exchange for verification of doctors licenses and hospitals license.
-- Verifiable Credentials and Presentation Exchange for verification for immunization and vaccination records
+- Convex for the backend and database 
+- Clerk for authentication
 
 ## Accomplishments that we're proud of
 **- Patients registration**
@@ -52,34 +45,4 @@ Rapha blog for doctors to write articles about their respective fields
 Research Hubs and patients can monetize by participating and sharing their health records.
 Appointment Booking:
 Develop a feature that allows patients to book appointments with doctors or hospitals.
-
-## Installation
-
-You'll need to install Node.js >=v14.16+ (Recommended Version) (NPM comes along with it) and TailAdmin uses **Vite** for frontend tooling, to perform installation and building production version, please follow these steps from below:
-
-- Use the terminal and navigate to the project Rapha root.
-
-- create a .env file with the details <code>ADMIN_DID=YOUR_DID_TO_SERVE_AS_PLATFORMS_PUBLIC_DID</code>
-  enter the DID of the browser instance you want as the ADMIN DID to view registered doctors and issue verifiable credentials
-
-- Then run : <code>npm install</code>
-
-- Then run : <code>npm run dev</code>
-
-Now, in the browser go to <code>localhost:5173</code>
-
-Navigate to <code>localhost:5173/admin/dashboard</code> to enter the admin dashboard to view registered doctors and issue verifiable credentials
-
-
-**For Production Build**
-Run : <code>npm run build</code>
-
-Default build output directory: /dist
-
-This command will generate a dist as build folder in the root of your template that you can upload to your server.
-
-![conv](https://github.com/Mcnoble1/Rapha-Convex/assets/40045755/62868231-f7dc-48ae-8cf6-bf918cb7602d)
-
-<img width="536" alt="zero" src="https://github.com/Mcnoble1/Rapha-Convex/assets/40045755/8b8e8f66-aebd-49db-9eb5-d2f8728a97cd">
-
 
