@@ -6,7 +6,7 @@
   "homepage": "https://rapha.netlify.app",
   "scripts": {
     "dev": "vite",
-    "build": "npx convex dev && npx convex deploy --cmd 'npm run build'",
+    "build": "npx convex deploy --cmd 'npm run build'",
     "start": "vite preview"
   },
   "author": {
