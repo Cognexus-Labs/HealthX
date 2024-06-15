@@ -10,7 +10,7 @@ import App from './App';
 import './index.css';
 import './satoshi.css';
 
-const convex = new ConvexReactClient("https://brazen-mastiff-548.convex.cloud");
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
