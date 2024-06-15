@@ -1,11 +1,18 @@
-// src/components/ImageInput.jsx
-import React, { useState } from 'react';
+import { useState, useRef } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const ImageInput = ({ addSummary }) => {
+const ImageInput = () => {
   const [imageFile, setImageFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [summary, setSummary] = useState('');
+
+  const inputFile = useRef(null);
 
   const handleSubmit = async () => {
+    if (imageFile) {
+    inputFile.current.value = "";
+    setIsLoading(true);
     const formData = new FormData();
     formData.append('image_file', imageFile);
 
@@ -15,9 +22,16 @@ const ImageInput = ({ addSummary }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      addSummary(response.data.summary);
+      setSummary(response.data.summary);
+        setImageFile(null);
     } catch (error) {
       console.error('Error summarizing image:', error);
+        toast.error('No file selected or File exceeds 25MB limit');
+    } finally {
+        setIsLoading(false);
+      }
+    } else {
+        toast.error('No file selected')
     }
   };
 
@@ -27,6 +41,7 @@ const ImageInput = ({ addSummary }) => {
       <input
         type="file"
         accept="image/*"
+        ref={inputFile}
         onChange={(e) => setImageFile(e.target.files[0])}
         className="mb-4"
       />
@@ -34,8 +49,30 @@ const ImageInput = ({ addSummary }) => {
         className="bg-blue-500 text-white px-4 bg-primary py-2 rounded"
         onClick={handleSubmit}
       >
-        Summarize
+        {isLoading ? (
+            <div className="flex items-center">
+                <div className="spinner"></div>
+                <span className="pl-1">Summarizing...</span>
+            </div>
+            ) : (
+            <>Summarize</>
+            )}
       </button>
+
+      {summary && (
+        <div className="mt-4 p-4 bg-gray-100 rounded">
+            <div className='w-full flex flex-row justify-between'>
+            <h3 className="text-lg font-bold mb-2">Image Description</h3>
+            <button
+                className="bg-primary text-white px-4 py-1 rounded"
+                onClick={() => setSummary('')}
+            >
+                Clear
+            </button>
+            </div>
+            <p>{summary}</p>
+        </div>
+        )}
     </div>
   );
 };
