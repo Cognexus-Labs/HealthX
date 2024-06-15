@@ -1,11 +1,19 @@
-// src/components/AudioInput.jsx
-import React, { useState } from 'react';
+import { useState, useRef } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const AudioInput = ({ addSummary }) => {
+
+const AudioInput = () => {
   const [audioFile, setAudioFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [summary, setSummary] = useState('');
+
+  const inputFile = useRef(null);
 
   const handleSubmit = async () => {
+    if (audioFile) {
+    inputFile.current.value = "";
+    setIsLoading(true);
     const formData = new FormData();
     formData.append('audio_file', audioFile);
 
@@ -15,10 +23,17 @@ const AudioInput = ({ addSummary }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      addSummary(response.data.summary);
+      setSummary(response.data.summary);
+      setAudioFile(null);
     } catch (error) {
       console.error('Error summarizing audio:', error);
+        toast.error('File exceeds 25MB limit, try again');
+    } finally {
+      setIsLoading(false);
     }
+} else {
+    toast.error('No file selected');
+}
   };
 
   return (
@@ -27,15 +42,39 @@ const AudioInput = ({ addSummary }) => {
       <input
         type="file"
         accept="audio/*"
+        ref={inputFile}
         onChange={(e) => setAudioFile(e.target.files[0])}
         className="mb-4"
       />
       <button
         className="bg-blue-500 text-white bg-primary px-4 py-2 rounded"
         onClick={handleSubmit}
+        disabled={isLoading}
       >
-        Summarize
+        {isLoading ? (
+            <div className="flex items-center">
+                <div className="spinner"></div>
+                <span className="pl-1">Summarizing...</span>
+            </div>
+            ) : (
+            <>Summarize</>
+            )}
       </button>
+
+        {summary && (
+        <div className="mt-4 p-4 bg-gray-100 rounded">
+            <div className='w-full flex flex-row justify-between'>
+            <h3 className="text-lg font-bold mb-2">Audio Summary</h3>
+            <button
+                className="bg-primary text-white px-4 py-1 rounded"
+                onClick={() => setSummary('')}
+            >
+                Clear
+            </button>
+            </div>
+            <p>{summary}</p>
+        </div>
+        )}
     </div>
   );
 };
