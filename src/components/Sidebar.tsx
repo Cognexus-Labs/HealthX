@@ -158,19 +158,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
 
-              {/* <li>
-                <NavLink
-                  to="/chat"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:border-r-4 border-fuchsia-600 dark:hover:bg-meta-4 ${
-                    pathname.includes('chat') &&
-                    'border-r-4 dark:bg-meta-4'
-                  }`}
-                >
-                  <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
-                  Chat
-                </NavLink>
-              </li> */}
-
+      
               <li>
                 <NavLink
                   to="/ai"
@@ -194,6 +182,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 >
                   <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
                   Summary
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/patient/log"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:border-r-4 border-fuchsia-600 dark:hover:bg-meta-4 ${
+                    pathname.includes("log") &&
+                    'border-r-4 dark:bg-meta-4'
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
+                  Log
                 </NavLink>
               </li>
              

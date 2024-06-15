@@ -10,6 +10,7 @@ const Patients = lazy(() => import('../pages/Doctor/Patients'));
 const Record = lazy(() => import('../pages/Doctor/Patient'));
 const Doctors = lazy(() => import('../pages/Patient/Doctors'));
 const Summary = lazy(() => import('../pages/Patient/Summary'));
+const Log = lazy(() => import('../pages/Patient/Log'));
 const DoctorProfile = lazy(() => import('../pages/Patient/Profile'));
 const PatientProfile = lazy(() => import('../pages/Doctor/Profile'));
 const Docs = lazy(() => import('../pages/Admin/Doctors'));
@@ -80,6 +81,11 @@ const coreRoutes = [
     path: '/patient/summary',
     title: 'Summary',
     component: Summary,
+  },
+  {
+    path: '/patient/log',
+    title: 'Log',
+    component: Log,
   }
 ];
 

@@ -10,6 +10,7 @@ import Ai from './pages/Ai';
 import Doctor from './pages/Doctor/Dashboard';
 import Doctors from './pages/Patient/Doctors';
 import Summary from './pages/Patient/Summary';
+import Log from './pages/Patient/Log';
 import Admin from './pages/Admin/Dashboard';
 import Docs from './pages/Admin/Doctors';
 import DoctorProfile from './pages/Doctor/Profile';
@@ -50,6 +51,7 @@ function App() {
         <Route path="/doctor/patient" element={<Record />} />
         <Route path="/patient/doctors" element={<Doctors />} />
         <Route path="/patient/summary" element={<Summary />} />
+        <Route path="/patient/log" element={<Log />} />
         <Route path="/admin/dashboard" element={<Admin />} />
         <Route path="/admin/doctors" element={<Docs />} />
         <Route path="/doctor/profile" element={<DoctorProfile />} />

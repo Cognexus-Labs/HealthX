@@ -51,6 +51,9 @@ export default defineSchema({
     patientName: v.string(),
     dateOfBirth: v.string(),
   }),
+  summary: defineTable({
+    body: v.any(),
+  }),
   chats: defineTable({
     author: v.string(),
     body: v.string(),
