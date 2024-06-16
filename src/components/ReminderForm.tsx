@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ReminderForm = ({ addReminder }) => {
+const ReminderForm = ({ addReminder, setReminderPopupOpen }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
@@ -15,11 +15,11 @@ const ReminderForm = ({ addReminder }) => {
     setDate('');
     setTime('');
     setFrequency('Once');
+    setReminderPopupOpen(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded-lg shadow-md">
-      <h2 className="text-lg font-bold mb-2">Add Reminder</h2>
+    <form onSubmit={handleSubmit} className="p-4 rounded-lg ">
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">Title</label>
         <input
@@ -72,7 +72,7 @@ const ReminderForm = ({ addReminder }) => {
           <option value="Hourly">Hourly</option>
         </select>
       </div>
-      <button type="submit" className="mt-2 p-2 bg-blue-500 text-white rounded-md">
+      <button type="submit"  className="mt-2 p-2 bg-primary text-white rounded-md">
         Add Reminder
       </button>
     </form>
