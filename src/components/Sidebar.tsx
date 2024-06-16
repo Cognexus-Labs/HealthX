@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../images/logo/logo.png';
 import SidebarLinkGroup from './SidebarLinkGroup';
@@ -6,12 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
-import { faVideo } from '@fortawesome/free-solid-svg-icons';
-import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { faHospital } from '@fortawesome/free-solid-svg-icons';
 import { faPerson } from '@fortawesome/free-solid-svg-icons';
 import { faNoteSticky } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUserMd } from '@fortawesome/free-solid-svg-icons';
+import { faUserNurse } from '@fortawesome/free-solid-svg-icons';
+import { faNotesMedical } from '@fortawesome/free-solid-svg-icons';
+import { faList } from '@fortawesome/free-solid-svg-icons';
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
 
 
 interface SidebarProps {
@@ -104,7 +109,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       </div>
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+        <nav className=" py-4 px-4 lg:px-6">
           <div>
             <ul className="mb-6 flex flex-col gap-1.5">
 
@@ -124,10 +129,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/patient/profile"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:border-r-4 dark:hover:bg-meta-4 ${
-                    pathname.includes('dashboard') && 'border-r-4 dark:bg-meta-4'
+                    pathname.includes('profile') && 'border-r-4 dark:bg-meta-4'
                   }`}
                 >
-                   <FontAwesomeIcon icon={faCircleUser} style={{color: "#ffffff",}} />
+                   <FontAwesomeIcon icon={faUser} style={{color: "#ffffff",}} />
                   Profile
                 </NavLink>
               </li>
@@ -153,7 +158,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     'border-r-4 dark:bg-meta-4'
                   }`}
                 >
-                  <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
+                  <FontAwesomeIcon icon={faUserNurse} style={{color: "#fcfcfc",}} />
                   Doctors
                 </NavLink>
               </li>
@@ -167,7 +172,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     'border-r-4 dark:bg-meta-4'
                   }`}
                 >
-                  <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
+                  <FontAwesomeIcon icon={faRobot} style={{color: "#fcfcfc",}} />
                   AI
                 </NavLink>
               </li>
@@ -180,8 +185,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     'border-r-4 dark:bg-meta-4'
                   }`}
                 >
-                  <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
-                  Summary
+                  <FontAwesomeIcon icon={faNotesMedical} style={{color: "#fcfcfc",}} />
+                  Summarizer
                 </NavLink>
               </li>
 
@@ -193,8 +198,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     'border-r-4 dark:bg-meta-4'
                   }`}
                 >
-                  <FontAwesomeIcon icon={faHospital} style={{color: "#fcfcfc",}} />
-                  Log
+                  <FontAwesomeIcon icon={faList} style={{color: "#fcfcfc",}} />
+                  Health Log
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/patient/reminders"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:border-r-4 border-fuchsia-600 dark:hover:bg-meta-4 ${
+                    pathname.includes("reminders") &&
+                    'border-r-4 dark:bg-meta-4'
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faCalendarAlt} style={{color: "#fcfcfc",}} />
+                  Reminders
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/patient/news"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:border-r-4 border-fuchsia-600 dark:hover:bg-meta-4 ${
+                    pathname.includes("news") &&
+                    'border-r-4 dark:bg-meta-4'
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faNewspaper} style={{color: "#fcfcfc",}} />
+                  News and Tips
                 </NavLink>
               </li>
              

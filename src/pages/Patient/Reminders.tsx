@@ -13,10 +13,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../signin.css';
 
-const Summary: React.FC = () => {
+const Reminders: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [completedResults, setCompletedResults] = useState([]);
-  const [currentSummary, setCurrentSummary] = useState<{ id: string; body: string }>({ id: "", body: "" });
+  const [currentReminders, setCurrentReminders] = useState<{ id: string; body: string }>({ id: "", body: "" });
   const [updateLoading, setUpdateLoading] = useState(false);
   const [popupOpenMap, setPopupOpenMap] = useState<{ [key: string]: boolean }>({});
   const [userToDeleteId, setUserToDeleteId] = useState<number | null>(null);
@@ -24,10 +24,10 @@ const Summary: React.FC = () => {
 
   const popup = useRef<HTMLDivElement | null>(null); 
 
-  const createSummary = useMutation(api.summary.createSummary);
+  const createReminders = useMutation(api.summary.createReminders);
   const summaries = useQuery(api.summary.getSummaries, {});
-  const updateSummary = useMutation(api.summary.updateSummary);
-  const deleteSummary = useMutation(api.summary.deleteSummary);
+  const updateReminders = useMutation(api.summary.updateReminders);
+  const deleteReminders = useMutation(api.summary.deleteReminders);
 
   const {
     interimResult,
@@ -52,8 +52,8 @@ const Summary: React.FC = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
-    setCurrentSummary((prevSummary) => ({
-      ...prevSummary,
+    setCurrentReminders((prevReminders) => ({
+      ...prevReminders,
       body: value,
     }));
   };
@@ -69,7 +69,7 @@ const Summary: React.FC = () => {
   };
 
   const togglePopup = (summaryId: string, body: string) => {
-    setCurrentSummary({ id: summaryId, body });
+    setCurrentReminders({ id: summaryId, body });
     setPopupOpenMap((prevMap) => ({
       ...prevMap,
       [summaryId]: !prevMap[summaryId],
@@ -83,10 +83,10 @@ const Summary: React.FC = () => {
     }));
   };
 
-  const updateSummaryDetails = async (recordId: string, data: { body: string }) => {
+  const updateRemindersDetails = async (recordId: string, data: { body: string }) => {
     setUpdateLoading(true);
     try {
-      await updateSummary({ id: recordId, ...data });
+      await updateReminders({ id: recordId, ...data });
       toast.success('Successfully updated your record', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, 
@@ -103,17 +103,17 @@ const Summary: React.FC = () => {
     }
   };
 
-  const deleteSummaryDetails = async (userId: any) => {
+  const deleteRemindersDetails = async (userId: any) => {
     try {
-      await deleteSummary({ id: userId});
+      await deleteReminders({ id: userId});
       toast.success('Successfully deleted record', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, 
       });
       hideDeleteConfirmation();
     } catch (error) {
-      console.error('Error in deleteSummaryDetails:', error);
-      toast.error('Error in deleteSummaryDetails:', {
+      console.error('Error in deleteRemindersDetails:', error);
+      toast.error('Error in deleteRemindersDetails:', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, 
       });
@@ -141,7 +141,7 @@ const Summary: React.FC = () => {
       ]);
 
       // Create a new summary
-      await createSummary({ body: combinedTranscript });
+      await createReminders({ body: combinedTranscript });
     }
   };
 
@@ -154,7 +154,7 @@ const Summary: React.FC = () => {
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               <div className="mb-6 flex flex-row gap-0 lg:gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <Breadcrumb pageName="Health Consultation Logs" />
+                <Breadcrumb pageName="Reminders" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {summaries?.map((summary, index) => (
@@ -176,7 +176,7 @@ const Summary: React.FC = () => {
                             style={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'scroll' }}
                           >              
                             <div className="flex flex-row justify-between">
-                              <h2 className="text-xl font-semibold mb-4">Edit Summary</h2>
+                              <h2 className="text-xl font-semibold mb-4">Edit Reminders</h2>
                               <div className="flex justify-end">
                                 <button
                                   onClick={() => closePopup(summary._id)}
@@ -207,7 +207,7 @@ const Summary: React.FC = () => {
                                       <textarea
                                         name="body"
                                         rows={5}
-                                        value={currentSummary.body}
+                                        value={currentReminders.body}
                                         onChange={handleInputChange}
                                         className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"
                                       ></textarea>
@@ -218,7 +218,7 @@ const Summary: React.FC = () => {
                             </form>
                             <button
                               type="button"
-                              onClick={() => updateSummaryDetails(currentSummary.id, { body: currentSummary.body })}
+                              onClick={() => updateRemindersDetails(currentReminders.id, { body: currentReminders.body })}
                               disabled={updateLoading}
                               className={`mr-5 mb-5 inline-flex items-center justify-center gap-2.5 rounded-full bg-primary py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10 ${updateLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
@@ -253,7 +253,7 @@ const Summary: React.FC = () => {
                             <button
                               onClick={() => {
                                 hideDeleteConfirmation();
-                                deleteSummaryDetails(summary._id);
+                                deleteRemindersDetails(summary._id);
                               }}
                               className="rounded bg-danger py-2 px-3 text-white hover:bg-opacity-90"
                             >
@@ -290,4 +290,4 @@ const Summary: React.FC = () => {
   );
 };
 
-export default Summary;
+export default Reminders;
