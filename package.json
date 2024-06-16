@@ -6,7 +6,7 @@
   "homepage": "/",
   "scripts": {
     "dev": "vite",
-    "build": "npx convex deploy --cmd 'vite build'",
+    "build": "vite build",
     "start": "vite preview"
   },
   "author": {
