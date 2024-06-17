@@ -15,6 +15,11 @@ export default function Home() {
 
   const chats = useQuery(api.chats.list, { userId: userId });
   const sendChat = useMutation(api.chats.send);
+  const deleteAll = useMutation(api.chats.deleteAll);
+
+  const deleteAllChats = async () => {
+    await deleteAll({ userId: userId });
+  }
 
   const [newChatText, setNewChatText] = useState("");
 
@@ -40,9 +45,12 @@ export default function Home() {
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               <div className="mb-6 flex flex-row gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <Breadcrumb pageName="HealthX AI: Your Personal Healthcare Assistant" />   
+                <button className="bg-primary rounded-lg text-white p-3 hover:bg-primary/50" onClick={deleteAllChats}>
+                  Clear
+                 </button>
               </div>
-              <div className="flex flex-col gap-10">
-              <div className="rounded-sm border border-stroke  shadow-default dark:border-strokedark dark:bg-boxdark xl:flex">
+              <div className="flex flex-col gap-10 rounded-lg">
+              <div className=" rounded-sm border border-stroke  shadow-default dark:border-strokedark dark:bg-boxdark">
 
                 <div className="chat">
                     {chats?.map((chat) => (
@@ -87,3 +95,4 @@ export default function Home() {
     </div>
   );
 }
+

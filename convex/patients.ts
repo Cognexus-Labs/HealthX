@@ -20,9 +20,9 @@ export const getPatients = query({
     });
 
 export const createPatient = mutation({
-    args: { name: v.string(), dateOfBirth: v.string(), email: v.string(), phone: v.string(), maritalStatus: v.string(), identificationNumber: v.string(), gender: v.string(), homeAddress: v.string(), city: v.string(), state: v.string(), country: v.string(), guardianName: v.string(), relationship: v.string(), guardianGender: v.string(), guardianHomeAddress: v.string(), guardianEmail: v.string(), guardianCity: v.string(), guardianState: v.string(), guardianCountry: v.string(), guardianPhone: v.string(), },
+    args: { name: v.string(), dateOfBirth: v.string(), email: v.string(), phone: v.string(), maritalStatus: v.string(), identificationNumber: v.string(), gender: v.string(), homeAddress: v.string(), city: v.string(), state: v.string(), country: v.string() },
     handler: async (ctx, args) => {
-        const { name, dateOfBirth, email, phone, maritalStatus, identificationNumber, gender, homeAddress, city, state, country, guardianName, relationship, guardianGender, guardianHomeAddress, guardianEmail, guardianCity, guardianState, guardianCountry, guardianPhone } = args;
+        const { name, dateOfBirth, email, phone, maritalStatus, identificationNumber, gender, homeAddress, city, state, country } = args;
         const patientId = await ctx.db.insert("patients", {
             name,
             dateOfBirth,
@@ -35,24 +35,15 @@ export const createPatient = mutation({
             city,
             state,
             country,
-            guardianName,
-            relationship,
-            guardianGender,
-            guardianHomeAddress,
-            guardianEmail,
-            guardianCity,
-            guardianState,
-            guardianCountry,
-            guardianPhone,
         });
         return patientId;
     },
 });
 
 export const updatePatient = mutation({
-    args: { id: v.id("patients"), name: v.string(), dateOfBirth: v.string(), email: v.string(), phone: v.string(), maritalStatus: v.string(), identificationNumber: v.string(), gender: v.string(), homeAddress: v.string(), city: v.string(), state: v.string(), country: v.string(), guardianName: v.string(), relationship: v.string(), guardianGender: v.string(), guardianHomeAddress: v.string(), guardianEmail: v.string(), guardianCity: v.string(), guardianState: v.string(), guardianCountry: v.string(), guardianPhone: v.string()},
+    args: { id: v.id("patients"), name: v.string(), dateOfBirth: v.string(), email: v.string(), phone: v.string(), maritalStatus: v.string(), identificationNumber: v.string(), gender: v.string(), homeAddress: v.string(), city: v.string(), state: v.string(), country: v.string(), relationship: v.string()},
     handler: async (ctx, args) => {
-        const { id, name, dateOfBirth, email, phone, maritalStatus, identificationNumber, gender, homeAddress, city, state, country, guardianName, relationship, guardianGender, guardianHomeAddress, guardianEmail, guardianCity, guardianState, guardianCountry, guardianPhone } = args;
+        const { id, name, dateOfBirth, email, phone, maritalStatus, identificationNumber, gender, homeAddress, city, state, country, relationship } = args;
         await ctx.db.patch(id, {
             name,
             dateOfBirth,
@@ -65,15 +56,6 @@ export const updatePatient = mutation({
             city,
             state,
             country,
-            guardianName,
-            relationship,
-            guardianGender,
-            guardianHomeAddress,
-            guardianEmail,
-            guardianCity,
-            guardianState,
-            guardianCountry,
-            guardianPhone,
         })
     }
 });

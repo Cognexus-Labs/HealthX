@@ -20,6 +20,7 @@ import type * as healthRecord from "../healthRecord.js";
 import type * as messages from "../messages.js";
 import type * as openai from "../openai.js";
 import type * as patients from "../patients.js";
+import type * as reminders from "../reminders.js";
 import type * as summary from "../summary.js";
 import type * as users from "../users.js";
 
@@ -38,6 +39,7 @@ declare const fullApi: ApiFromModules<{
   messages: typeof messages;
   openai: typeof openai;
   patients: typeof patients;
+  reminders: typeof reminders;
   summary: typeof summary;
   users: typeof users;
 }>;
