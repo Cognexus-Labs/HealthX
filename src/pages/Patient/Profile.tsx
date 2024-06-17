@@ -77,15 +77,6 @@ const Profile = () => {
           state: user.state,
           country: user.country,
           phone: user.phone,
-          guardianName: user.guardianName,
-          relationship: user.relationship,
-          guardianGender: user.guardianGender,
-          guardianHomeAddress: user.guardianHomeAddress,
-          guardianEmail: user.guardianEmail,
-          guardianCity: user.guardianCity,
-          guardianState: user.guardianState,
-          guardianCountry: user.guardianCountry,
-          guardianPhone: user.guardianPhone,
         });
       }
     });
@@ -139,19 +130,8 @@ const handleAddProfile = async (e: FormEvent) => {
   personaldata.append("country", personalData.country);
   personaldata.append("phone", personalData.phone);
 
-  const guardiandata = new FormData();
-  guardiandata.append("guardianName", guardianData.guardianName);
-  guardiandata.append("relationship", guardianData.relationship);
-  guardiandata.append("guardianGender", guardianData.guardianGender);
-  guardiandata.append("guardianHomeAddress", guardianData.guardianHomeAddress);
-  guardiandata.append("guardianEmail", guardianData.guardianEmail);
-  guardiandata.append("guardianCity", guardianData.guardianCity);
-  guardiandata.append("guardianState", guardianData.guardianState);
-  guardiandata.append("guardianCountry", guardianData.guardianCountry);
-  guardiandata.append("guardianPhone", guardianData.guardianPhone);
-
   try {
-    const patId = await createPatient({...personalData, ...guardianData });
+    const patId = await createPatient({...personalData });
     localStorage.setItem("userId", patId);
 
     setPersonalData({
@@ -168,17 +148,7 @@ const handleAddProfile = async (e: FormEvent) => {
       phone: '',
     })
 
-    setGuardianData({
-      guardianName: '',
-      relationship: '',
-      guardianGender: '',
-      guardianHomeAddress: '',
-      guardianEmail: '',
-      guardianCity: '',
-      guardianState: '',
-      guardianCountry: '',
-      guardianPhone: '',
-    })
+  
     setPopupOpen(false);
     toast.success('Successfully created patient record', {
       position: toast.POSITION.TOP_RIGHT,
@@ -393,74 +363,7 @@ const deletePatientDetails = async (userId: any) => {
                 </div>
               </div>
 
-              <div className='flex mb-10 p-5 flex-wrap w-full shadow-2xl rounded-lg'>
-                <div className='w-full mb-5 font-medium text-black text-xl'>Guardian Information</div>
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Name</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianName }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Relationship</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.relationship }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Gender</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianGender }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Email Address</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianEmail }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Phone Number</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianPhone }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Home Address</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianHomeAddress }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">City</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianCity }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">State</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianState }
-                  </h4>
-                </div>
-
-                <div className='w-1/3 mb-5' >
-                  <span className="text-xl">Country</span>
-                  <h4 className="text-xl mt-1 break-words font-medium text-black dark:text-white">
-                    { user.guardianCountry }
-                  </h4>
-                </div>
-              </div>
-
-              
-
+        
                 <div className='w-full flex flex-row justify-evenly mb-5'>
                   <div className="relative">
                     <button
@@ -697,166 +600,11 @@ const deletePatientDetails = async (userId: any) => {
                               </div>            
                                     </div>
 
-                                  <div className= "rounded-sm px-6.5 mt-10 bg-white dark:border-strokedark dark:bg-boxdark">
-                                      <h3 className="mb-2.5 block font-semibold dark:text-white">Guardian Information</h3>
-                                    <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                                    <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Name
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianName ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="guardianName"
-                                          required
-                                          value={guardianData.guardianName}
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="John Doe"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Gender
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianGender ? 'bg-light-blue' : ''}`}>
-                                        <select
-                                              name="guardianGender"
-                                              value={guardianData.guardianGender}
-                                              onChange={handleGuardianInputChange}
-                                              required
-                                              className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary">
-                                              <option value="">Select Gender</option>                        
-                                              <option value="Male">Male</option>
-                                              <option value="Female">Female</option>
-                                            </select>                        
-                                          </div>
-                                      </div>   
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Relationship to Patient
-                                        </label>
-                                        <div className={`relative ${guardianData.relationship ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="relationship"
-                                          value={guardianData.relationship}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="Partner"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>                
-                                    </div>
-
-                                    <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                                                      
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Phone Number
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianPhone ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="number"
-                                          name="guardianPhone"
-                                          value={guardianData.guardianPhone}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="+234 80123456"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Email Address
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianEmail ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="guardianEmail"
-                                          value={guardianData.guardianEmail}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="xyz@gmail.com"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Home Address
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianHomeAddress ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="guardianHomeAddress"
-                                          value={guardianData.guardianHomeAddress}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="Phoenix Court, 1st Avenue"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          City
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianCity ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="guardianCity"
-                                          value={guardianData.guardianCity}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="Lagos"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          State
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianState ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="guardianState"
-                                          value={guardianData.guardianState}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="US-CA"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-
-                                      <div className="w-full xl:w-3/5">
-                                        <label className="mb-2.5 block text-black dark:text-white">
-                                          Country
-                                        </label>
-                                        <div className={`relative ${guardianData.guardianCountry ? 'bg-light-blue' : ''}`}>
-                                        <input
-                                          type="text"
-                                          name="guardianCountry"
-                                          value={guardianData.guardianCountry}
-                                          required
-                                          onChange={handleGuardianInputChange}
-                                          placeholder="USA"
-                                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-border-primary"/>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                
                                   </form>
                                 <button
                                   type="button"
-                                  onClick={() => updatePatientDetails(user._id, personalData, guardianData)}
+                                  onClick={() => updatePatientDetails(user._id, personalData )}
                                   disabled={updateLoading}
                                   className={`mr-5 mb-5 inline-flex items-center justify-center gap-2.5 rounded-full bg-primary py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10 ${updateLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 >
