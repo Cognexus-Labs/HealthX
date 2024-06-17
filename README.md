@@ -6,7 +6,7 @@ Our inspiration for the Healthcare Platform stems from the need to revolutionize
 ## Demo Video
 
 ## What it does
-Rapha uses Decentralized Identifiers (DIDs) to enable users, including patients, doctors, and healthcare providers, to create and manage their unique digital identities. Each user possesses a personal Decentralized Web Node (DWN) as a secure data store, ensuring control over health records and selective data sharing with trusted parties. 
+HealthX enable users, including patients, doctors, and healthcare providers, to create and manage their unique digital identities. Each user possesses a personal Decentralized Web Node (DWN) as a secure data store, ensuring control over health records and selective data sharing with trusted parties. 
 
 **Health Records Management:** Users securely upload and manage comprehensive health records in their personal DWN, encrypted for privacy.
 **Selective Data Sharing:** Complete control over sharing health records with trusted parties, ensuring privacy and user-managed data across the healthcare system.
@@ -37,7 +37,7 @@ Real-time chat system to facilitate communication between patients and medical p
 
 - Patients can consult with doctors, share medical records, and get prescriptions and medical certificates.
 
-## What's next for Rapha
+## What's next for HealthX
 Adding and onboarding Hospitals and Lab Test Centres, Private Hospitals and medical agencies
 Govt agencies to help facilitate verification
 Patients can send out request for doctors or care workers

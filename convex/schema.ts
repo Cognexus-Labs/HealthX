@@ -18,15 +18,6 @@ export default defineSchema({
     state: v.string(),
     country: v.string(),
     phone: v.string(),
-    guardianName: v.string(),
-    relationship: v.string(),
-    guardianGender: v.string(),
-    guardianHomeAddress: v.string(),
-    guardianEmail: v.string(),
-    guardianCity: v.string(),
-    guardianState: v.string(),
-    guardianCountry: v.string(),
-    guardianPhone: v.string(),
   }),
   doctors: defineTable({
     name: v.string(),
@@ -53,6 +44,13 @@ export default defineSchema({
   }),
   summary: defineTable({
     body: v.any(),
+  }),
+  reminder: defineTable({
+    title: v.string(),
+    body: v.string(),
+    date: v.string(),
+    time: v.string(),
+    frequency: v.string(),
   }),
   chats: defineTable({
     author: v.string(),

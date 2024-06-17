@@ -11,6 +11,8 @@ import Doctor from './pages/Doctor/Dashboard';
 import Doctors from './pages/Patient/Doctors';
 import Summary from './pages/Patient/Summary';
 import Log from './pages/Patient/Log';
+import Reminders from './pages/Patient/Reminders';
+import News from './pages/Patient/News';
 import Admin from './pages/Admin/Dashboard';
 import Docs from './pages/Admin/Doctors';
 import DoctorProfile from './pages/Doctor/Profile';
@@ -52,6 +54,8 @@ function App() {
         <Route path="/patient/doctors" element={<Doctors />} />
         <Route path="/patient/summary" element={<Summary />} />
         <Route path="/patient/log" element={<Log />} />
+        <Route path="/patient/reminders" element={<Reminders />} />
+        <Route path="/patient/news" element={<News />} />
         <Route path="/admin/dashboard" element={<Admin />} />
         <Route path="/admin/doctors" element={<Docs />} />
         <Route path="/doctor/profile" element={<DoctorProfile />} />
