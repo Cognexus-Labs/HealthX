@@ -32,4 +32,4 @@ EXPOSE 3000
 RUN npm install -g serve
 
 # Command to deploy the Convex backend and start the static server
-CMD ["sh", "-c", "yarn convex deploy && serve -s dist"]
+CMD ["sh", "-c", "yarn convex deploy && serve -s dist", "0.0.0.0:3000"]
