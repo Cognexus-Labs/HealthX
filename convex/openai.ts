@@ -1,38 +1,3 @@
-// "use node";
-// import { action } from "./_generated/server";
-// import { v } from "convex/values";
-// import { api } from "./_generated/api";
-
-// export const chat = action({
-//     args: { 
-//         messageBody: v.string(),
-//         userId: v.any(),
-//      },
-//      handler: async (ctx, args) => {
-//       const response = await fetch("https://summarizeanything.azurewebsites.net/query", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           messages: [
-//             { role: "human", content: args.messageBody }
-//           ]
-//         }),
-//       });
-  
-//       const data = await response.json();
-
-//         // Send the message to the chat
-//         await ctx.runMutation(api.chats.send, { 
-//             body: data.response || "Sorry, I don't have an answer for that.",
-//             author: "HealthXAI",
-//             userId: args.userId,
-//         });
-//       },
-// })
-
-
 "use node";
 import { action } from "./_generated/server";
 import { v } from "convex/values";

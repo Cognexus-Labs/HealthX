@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactMarkdown from 'react-markdown';
 
 
 const AudioInput = () => {
@@ -72,7 +73,7 @@ const AudioInput = () => {
                 Clear
             </button>
             </div>
-            <p>{summary}</p>
+            <ReactMarkdown>{summary}</ReactMarkdown>
         </div>
         )}
     </div>

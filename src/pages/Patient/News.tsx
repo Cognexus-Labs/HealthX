@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
 import Breadcrumb from '../../components/Breadcrumb';
+import DailyHealthTip from '../../components/DailyHealthTip';
 import 'react-toastify/dist/ReactToastify.css';
 import '../signin.css';
 
@@ -73,8 +74,10 @@ const News: React.FC = () => {
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+              
+              <DailyHealthTip />
               <div className="mb-6 flex flex-row gap-0 lg:gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <Breadcrumb pageName="Trending News and Tips" />
+                <Breadcrumb pageName="Trending News" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {news?.map((article, index) => (

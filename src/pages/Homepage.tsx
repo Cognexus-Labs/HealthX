@@ -45,7 +45,7 @@ const Homepage = () => {
             Welcome to HealthX
           </p>
        
-          <span className="text-3xl lg:text-4xl font-medium">All Encompassing Healthcare Platform</span>
+          <span className="text-3xl lg:text-4xl font-medium">All Encompassing Healthcare Productivity Platform</span>
           </div>
           <div className="flex justify-center">
           <button 

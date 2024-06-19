@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactMarkdown from 'react-markdown';
 
 const PdfInput = () => {
   const [pdfFile, setPdfFile] = useState(null);
@@ -70,7 +71,7 @@ const PdfInput = () => {
                 Clear
             </button>
             </div>
-            <p>{summary}</p>
+            <ReactMarkdown>{summary}</ReactMarkdown>
         </div>
         )}
     </div>

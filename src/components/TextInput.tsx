@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactMarkdown from 'react-markdown';
+
 
 const TextInput = () => {
   const [text, setText] = useState('');
@@ -60,7 +62,7 @@ const TextInput = () => {
                 Clear
             </button>
             </div>
-            <p>{summary}</p>
+            <ReactMarkdown>{summary}</ReactMarkdown>
         </div>
         )}
     </div>

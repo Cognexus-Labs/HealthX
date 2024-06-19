@@ -3,9 +3,10 @@ import useSpeechToText from 'react-hook-speech-to-text';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Header from '../../components/Header';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import micIcon from './mic.svg';
 import Sidebar from '../../components/Sidebar';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -21,6 +22,11 @@ const Summary: React.FC = () => {
   const [popupOpenMap, setPopupOpenMap] = useState<{ [key: string]: boolean }>({});
   const [userToDeleteId, setUserToDeleteId] = useState<number | null>(null);
   const [isDeleteConfirmationVisible, setDeleteConfirmationVisible] = useState(false);
+  const [filename, setFilename] = useState('patient.md');
+  const [isLoading, setIsLoading] = useState(false);
+  const [ehrLoading, setEhrLoading] = useState(false);
+  const [summary, setSummary] = useState('');
+  const [ehr, setEhr] = useState('');
 
   const popup = useRef<HTMLDivElement | null>(null); 
 
@@ -145,6 +151,40 @@ const Summary: React.FC = () => {
     }
   };
 
+  const generateSummary = async () => {
+    setIsLoading(true);
+    try {
+      // Combine all summaries for the day
+      const allSummaries = summaries?.map(summary => summary.body).join(' ');
+      console.log(allSummaries)
+      const response = await axios.post('https://summarizeanything.azurewebsites.net/text2summary', { text: allSummaries });
+      setSummary(response.data.summary);
+    } catch (error) {
+      console.error('Error summarizing text:', error);
+      toast.error('Error summarizing text');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const generateEhr = async () => {
+    setEhrLoading(true);
+    generateSummary();
+    try {
+      const response = await axios.post('https://summarizeanything.azurewebsites.net/text2ehr', {
+        // old_ehr: oldEhr,
+        current_conversation: summary,
+        // system_prompt: systemPrompt,
+        filename: filename,
+      });
+      setEhr(response.data.ehr_record);
+    } catch (error) {
+      console.error('Error converting text to EHR:', error);
+    } finally {
+      setEhrLoading(false);
+    }
+  };
+
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       <div className="flex h-screen overflow-hidden">
@@ -155,6 +195,20 @@ const Summary: React.FC = () => {
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               <div className="mb-6 flex flex-row gap-0 lg:gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <Breadcrumb pageName="Health Consultation Logs" />
+                <button
+                  onClick={generateSummary}
+                  className="bg-primary text-white hover:bg-primary/80 py-2 px-4 rounded-3xl"
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Generating Summary...' : 'Generate Summary'}
+                </button>
+                <button
+                  onClick={generateEhr}
+                  className="bg-primary text-white hover:bg-primary/80 py-2 px-4 rounded-3xl"
+                  disabled={ehrLoading}
+                >
+                  {ehrLoading ? 'Generating EHR...' : 'Generate EHR'}
+                </button>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {summaries?.map((summary, index) => (
@@ -273,6 +327,18 @@ const Summary: React.FC = () => {
                   </div>
                 )}
               </div>
+              {summary && (
+                <div className="bg-white mt-5 dark:bg-gray-800 rounded-lg shadow-md p-4">
+                  <h3>Generated Summary:</h3>
+                  <ReactMarkdown>{summary}</ReactMarkdown>
+                </div>
+              )}  
+              {ehr && (
+                <div className="bg-white mt-5 dark:bg-gray-800 rounded-lg shadow-md p-4">
+                  <h3>Generated EHR:</h3>
+                  <ReactMarkdown>{ehr}</ReactMarkdown>
+                </div>
+              )}
             </div>
           </main>
         </div>

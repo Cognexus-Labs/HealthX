@@ -6,6 +6,7 @@ import TextInput from '../../components/TextInput';
 import AudioInput from '../../components/AudioInput';
 import UrlInput from '../../components/UrlInput';
 import ImageInput from '../../components/ImageInput';
+import EhrInput from '../../components/EhrInput';
 // import SummaryCard from '../../components/SummaryCard';
 import PdfInput from '../../components/PdfInput';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,6 +39,7 @@ const Summary: React.FC = () => {
                     <AudioInput />
                     <UrlInput />
                     <ImageInput />
+                    <EhrInput />
                 </div>
                 {/* <div className="mt-8">
                     {summaries.map((summary, index) => (
